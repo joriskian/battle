@@ -1,0 +1,39 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Meshes/macchi-m5.glb" type="PackedScene" id=1]
+[ext_resource path="res://Scripts/player.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Meshes/planet01.glb" type="PackedScene" id=3]
+
+[sub_resource type="CapsuleShape" id=1]
+radius = 0.762948
+height = 3.10265
+
+[sub_resource type="BoxShape" id=2]
+extents = Vector3( 4.15193, 0.195585, 0.966797 )
+
+[node name="Scene01" type="Spatial"]
+
+[node name="macchi-m5" parent="." instance=ExtResource( 1 )]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 466, 0 )
+script = ExtResource( 2 )
+min_speed = 41.192
+max_speed = 199.349
+steer_limit = 0.658
+
+[node name="CollisionFuselage" type="CollisionShape" parent="macchi-m5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0254315, 0.822289 )
+shape = SubResource( 1 )
+
+[node name="CollisionAilesTop" type="CollisionShape" parent="macchi-m5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.14466, -1.13835 )
+shape = SubResource( 2 )
+
+[node name="CollisionAilesBottom" type="CollisionShape" parent="macchi-m5"]
+transform = Transform( 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.447399, -0.931466 )
+shape = SubResource( 2 )
+
+[node name="Camera" type="Camera" parent="macchi-m5"]
+transform = Transform( -1, 0, -8.74228e-08, -3.02184e-08, 0.93836, 0.345659, 8.20341e-08, 0.345659, -0.93836, 2.72419e-06, 6.28683, -31.1611 )
+
+[node name="planet01" parent="." instance=ExtResource( 3 )]
+transform = Transform( 10, 0, 0, 0, 9.29847, 3.67946, 0, -3.67946, 9.29847, 0, 0, 0 )
